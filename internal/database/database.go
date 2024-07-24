@@ -1,9 +1,10 @@
 package database
 
 import (
-	"Go/Go/time-tracker/internal/models"
+	"fmt"
 	"log"
 	"os"
+	"time-tracker/internal/models"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -21,7 +22,12 @@ func ConnectDB() {
 	// Имя пользователя базы данных, пароль и имя базы данных
 	// берутся из переменных окружения,
 	// они описаны в файле .env
-	dsn := "host=localhost user=postgres password=5280 dbname=time-tracker port=5432 sslmode=disable TimeZone=Europe/Moscow"
+	dsn := fmt.Sprintf(
+		"host=db user=%s password=%s dbname=%s port=5432 sslmode=disable TimeZone=Europe/Moscow",
+		os.Getenv("DB_USER"),
+		os.Getenv("DB_PASSWORD"),
+		os.Getenv("DB_NAME"),
+	)
 	// создаём подключение к базе данных.
 	// В &gorm.Config настраивается логер,
 	// который будет сохранять информацию

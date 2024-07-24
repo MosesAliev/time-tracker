@@ -1,15 +1,16 @@
 package handlers
 
 import (
-	"Go/Go/time-tracker/internal/database"
-	"Go/Go/time-tracker/internal/models"
 	"net/http"
 	"strconv"
 	"time"
+	"time-tracker/internal/database"
+	"time-tracker/internal/models"
 
 	"github.com/gin-gonic/gin"
 )
 
+// Задача завершена
 func EndTimeHandler(c *gin.Context) {
 	var query1, _ = c.GetQuery("passportSerie")
 	var query2, _ = c.GetQuery("passportNumber")
@@ -41,4 +42,5 @@ func EndTimeHandler(c *gin.Context) {
 		return
 	}
 
+	c.IndentedJSON(http.StatusInternalServerError, gin.H{"message": "Конец задачи"})
 }

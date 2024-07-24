@@ -1,11 +1,11 @@
 package main
 
 import (
-	"Go/Go/time-tracker/internal/database"
-	"Go/Go/time-tracker/internal/http/router"
+	"time-tracker/internal/database"
+	"time-tracker/internal/http/router"
 )
 
 func main() {
-	database.ConnectDB()
-	router.SetupAndRunRouter()
+	database.ConnectDB()       // Подключение к БД
+	router.SetupAndRunRouter() // запуск сервера
 }
