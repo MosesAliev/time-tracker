@@ -1,0 +1,107 @@
+
+openapi: 3.0.3
+info:
+  title: People info
+  version: 0.0.1
+paths:
+  /info:
+    get:
+      parameters:
+        - name: passportSerie
+          in: query
+          required: true
+          schema:
+            type: integer
+        - name: passportNumber
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/People'
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+  /getusertime:
+    get:
+      parameters:
+        - name: passportSerie
+          in: query
+          required: true
+          schema:
+            type: integer
+        - name: passportNumber
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Time'
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+  /updateuser:
+    patch:
+      parameters:
+      - name: passportSerie
+        in: query
+        required: true
+        schema:
+        type: integer
+      - name: passportNumber
+        in: query
+        required: true
+        schema:
+        type: integer
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Update'
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+
+      
+
+components:
+  schemas:
+    People:
+      required:
+        - message
+    Time:
+      required:
+        - message
+      type: object
+      
+      properties:
+        message:
+          type: string
+          example: 8 hours
+    Update:
+      required:
+        - message
+      type: object
+      
+      properties:
+        message:
+          type: string
+          example: обновлено
+        
+      
+      
